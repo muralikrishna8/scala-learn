@@ -1,16 +1,14 @@
 object Main extends App {
-  def getAge(config: Config): Age = {
+  def getAge(implicit config: Config): Age = {
     Age(config.age)
   }
 
-  def getName(config: Config): Name = {
+  def getName(implicit config: Config): Name = {
     Name(config.name)
   }
 
-  def getPerson(config: Config): Person = {
-    val name = getName(config)
-    val age = getAge(config)
-    Person(name, age)
+  def getPerson(implicit config: Config): Person = {
+    Person(getName, getAge)
   }
 
   println(getPerson(Config("Murali", 25)))
